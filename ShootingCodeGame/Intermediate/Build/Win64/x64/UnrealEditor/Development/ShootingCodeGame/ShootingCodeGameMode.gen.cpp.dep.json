@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\shootingcodegamemode.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\x64\\shootingcodegameeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\shootingcodegame\\definitions.shootingcodegame.h",
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\source\\shootingcodegame\\public\\gamemode\\shootingcodegamemode.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\shootingcodegamemode.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

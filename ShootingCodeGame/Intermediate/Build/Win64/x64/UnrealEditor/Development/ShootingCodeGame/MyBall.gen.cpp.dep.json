@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\myball.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\x64\\shootingcodegameeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\shootingcodegame\\definitions.shootingcodegame.h",
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\source\\shootingcodegame\\public\\blueprints\\myball.h",
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\myball.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

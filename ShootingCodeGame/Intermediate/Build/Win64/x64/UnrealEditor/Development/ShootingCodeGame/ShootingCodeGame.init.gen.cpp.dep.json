@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\shootingcodegame.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\x64\\shootingcodegameeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\shootingcodegame\\definitions.shootingcodegame.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

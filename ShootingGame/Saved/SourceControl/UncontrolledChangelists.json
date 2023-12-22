@@ -1,0 +1,16 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/GameMode/BP_ShootingCharacter.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ThirdPerson/Input/Actions/IA_Reload.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ThirdPerson/Input/IMC_Default.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/Characters/Mannequins/Animations/InPlace/Rifle_Reload_2_Montage.uasset"
+			]
+		}
+	]
+}

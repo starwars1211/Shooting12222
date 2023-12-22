@@ -1,0 +1,19 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-ShootingCodeGame-9200.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\ShootingCodeGameEditor\Development\Engine\SharedPCH.Engine.Cpp20.h.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\MyBall.gen.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGame.init.gen.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGameCharacter.gen.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGameMode.gen.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGame.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\MyBall.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGameCharacter.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGameMode.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\Default.rc2.res"
+/OUT:"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\UnrealEditor-ShootingCodeGame-9200.lib"
