@@ -11,6 +11,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h" //DOREPLIFETIME 사용을 위해 추가
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -55,6 +56,15 @@ AShootingCodeGameCharacter::AShootingCodeGameCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
+void AShootingCodeGameCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const// 헤더파일에 함수를 안만들어도 실행되는데 문제가 없다
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AShootingCodeGameCharacter, ControlRot); // 변수들을 동기화 한다는 것 
+	
+}
+
+
 void AShootingCodeGameCharacter::BeginPlay()
 {
 	// Call the base class  
@@ -67,6 +77,16 @@ void AShootingCodeGameCharacter::BeginPlay()
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
+	}
+}
+
+void AShootingCodeGameCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if(HasAuthority() == true)
+	{ 
+		ControlRot = GetControlRotation();
 	}
 }
 
@@ -194,12 +214,12 @@ void AShootingCodeGameCharacter::ReqReload_Implementation()
 {
 	
 	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ReqReload"));
-	ReReload();
+	ResReload();
 }
 
-void AShootingCodeGameCharacter::ReReload_Implementation()
+void AShootingCodeGameCharacter::ResReload_Implementation()
 {
 	PlayAnimMontage(ReloadMontage);
 	UGameplayStatics::SpawnSound2D(this,playSound);
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ReReload"));
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ResReload"));
 }

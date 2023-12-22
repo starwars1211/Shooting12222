@@ -9,7 +9,29 @@
 				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/GameMode/BP_ShootingCharacter.uasset",
 				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ThirdPerson/Input/Actions/IA_Reload.uasset",
 				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ThirdPerson/Input/IMC_Default.uasset",
-				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/Characters/Mannequins/Animations/InPlace/Rifle_Reload_2_Montage.uasset"
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/Characters/Mannequins/Animations/InPlace/Rifle_Reload_2_Montage.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/Characters/Mannequins/Animations/ABP_Shooting.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/Widget/ShootingHudWidget.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/GameMode/BP_Hud.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/GameMode/BP_ShootingGameMode.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/GameMode/BP_ShootingPlayerState.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/GameMode/BP_ShootingPlayerControler.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/BP_Sphere.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/BP_MoveRext.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/BP_MoveRotation.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/BP_Switch.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/9/BW/81WAKI4BI7ZAL24OFEX8UV.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/C/UP/O9434XE56O0F8C5CCTKCT3.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/B/0L/7B4VYH16OKSNYE7ZEEC9L4.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/BP_MoveLeftRight.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/BP_MoveRect.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/BP_MoveObject.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/HP/LUMINK633M97IXLNYUCQ4J.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/2/0B/NYK5CLIGUJD0AQPRKEKQC1.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/1/OW/IYIPFU5L7XV639SS0RFHG1.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/ShootingGame/Widget/NewWidgetBlueprint.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/C/UR/GKMSNG6PGDFRMGLGLVX2PL.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/6/XZ/0YW5LJEZPPOIRNO1QVNXMX.uasset"
 			]
 		}
 	]

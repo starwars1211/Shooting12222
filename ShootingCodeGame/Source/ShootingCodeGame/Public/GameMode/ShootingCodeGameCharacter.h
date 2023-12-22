@@ -86,6 +86,8 @@ protected:
 	// To add mapping context
 	virtual void BeginPlay();
 
+	virtual void Tick(float DeltaSeconds) override;
+
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
@@ -113,6 +115,12 @@ public:
 	UFUNCTION(NetMulticast, Reliable) //Mulicast
 		void ReShoot();
 
+	UFUNCTION(Server, Reliable) // Server only
+		void ReqReload();//Custom event
+
+	UFUNCTION(NetMulticast, Reliable) //Mulicast
+		void ResReload();
+
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -121,11 +129,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USoundBase* playSound;
 
-	UFUNCTION(Server, Reliable) // Server only
-		void ReqReload();//Custom event
-
-	UFUNCTION(NetMulticast, Reliable) //Mulicast
-		void ReReload();
+	UPROPERTY(Replicated, BlueprintReadWrite)
+	FRotator ControlRot;
 
 };
 

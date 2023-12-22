@@ -9,6 +9,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 // Cross Module References
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
@@ -20,11 +21,11 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	SHOOTINGCODEGAME_API UClass* Z_Construct_UClass_AShootingCodeGameCharacter_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_ShootingCodeGame();
 // End Cross Module References
-	DEFINE_FUNCTION(AShootingCodeGameCharacter::execReReload)
+	DEFINE_FUNCTION(AShootingCodeGameCharacter::execResReload)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->ReReload_Implementation();
+		P_THIS->ResReload_Implementation();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AShootingCodeGameCharacter::execReqReload)
@@ -84,11 +85,6 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	{
 		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ReqShoot),NULL);
 	}
-	static FName NAME_AShootingCodeGameCharacter_ReReload = FName(TEXT("ReReload"));
-	void AShootingCodeGameCharacter::ReReload()
-	{
-		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ReReload),NULL);
-	}
 	static FName NAME_AShootingCodeGameCharacter_ReShoot = FName(TEXT("ReShoot"));
 	void AShootingCodeGameCharacter::ReShoot()
 	{
@@ -104,6 +100,11 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	{
 		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ResPressFClient),NULL);
 	}
+	static FName NAME_AShootingCodeGameCharacter_ResReload = FName(TEXT("ResReload"));
+	void AShootingCodeGameCharacter::ResReload()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ResReload),NULL);
+	}
 	void AShootingCodeGameCharacter::StaticRegisterNativesAShootingCodeGameCharacter()
 	{
 		UClass* Class = AShootingCodeGameCharacter::StaticClass();
@@ -111,10 +112,10 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 			{ "ReqPressF", &AShootingCodeGameCharacter::execReqPressF },
 			{ "ReqReload", &AShootingCodeGameCharacter::execReqReload },
 			{ "ReqShoot", &AShootingCodeGameCharacter::execReqShoot },
-			{ "ReReload", &AShootingCodeGameCharacter::execReReload },
 			{ "ReShoot", &AShootingCodeGameCharacter::execReShoot },
 			{ "ResPressF", &AShootingCodeGameCharacter::execResPressF },
 			{ "ResPressFClient", &AShootingCodeGameCharacter::execResPressFClient },
+			{ "ResReload", &AShootingCodeGameCharacter::execResReload },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -202,34 +203,6 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ReReload_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_ReReload_Statics::Function_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//Custom event\n//Mulicast\n" },
-#endif
-		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Custom event\nMulicast" },
-#endif
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_ReReload_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "ReReload", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00024CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ReReload_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_ReReload_Statics::Function_MetaDataParams) };
-	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_ReReload()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShootingCodeGameCharacter_ReReload_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
 	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot_Statics
 	{
 #if WITH_METADATA
@@ -314,6 +287,34 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Custom event\n//Mulicast\n" },
+#endif
+		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Custom event\nMulicast" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "ResReload", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00024CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(AShootingCodeGameCharacter);
 	UClass* Z_Construct_UClass_AShootingCodeGameCharacter_NoRegister()
 	{
@@ -374,6 +375,10 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_playSound_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_playSound;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ControlRot_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ControlRot;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -387,10 +392,10 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReqPressF, "ReqPressF" }, // 555041949
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReqReload, "ReqReload" }, // 1007805956
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot, "ReqShoot" }, // 2888907508
-		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReReload, "ReReload" }, // 2054745351
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot, "ReShoot" }, // 2310996531
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF, "ResPressF" }, // 232045857
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressFClient, "ResPressFClient" }, // 1587250022
+		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload, "ResReload" }, // 1840526961
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
@@ -549,6 +554,13 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound = { "playSound", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, playSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot_MetaData[] = {
+		{ "Category", "ShootingCodeGameCharacter" },
+		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot = { "ControlRot", nullptr, (EPropertyFlags)0x0010000000000024, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, ControlRot), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShootingCodeGameCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_CameraBoom,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_FollowCamera,
@@ -562,6 +574,7 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootMontage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadMontage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AShootingCodeGameCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AShootingCodeGameCharacter>::IsAbstract,
@@ -594,6 +607,16 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	{
 		return AShootingCodeGameCharacter::StaticClass();
 	}
+
+	void AShootingCodeGameCharacter::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
+	{
+		static const FName Name_ControlRot(TEXT("ControlRot"));
+
+		const bool bIsValid = true
+			&& Name_ControlRot == ClassReps[(int32)ENetFields_Private::ControlRot].Property->GetFName();
+
+		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in AShootingCodeGameCharacter"));
+	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AShootingCodeGameCharacter);
 	AShootingCodeGameCharacter::~AShootingCodeGameCharacter() {}
 	struct Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_Statics
@@ -601,9 +624,9 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AShootingCodeGameCharacter, AShootingCodeGameCharacter::StaticClass, TEXT("AShootingCodeGameCharacter"), &Z_Registration_Info_UClass_AShootingCodeGameCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShootingCodeGameCharacter), 294369932U) },
+		{ Z_Construct_UClass_AShootingCodeGameCharacter, AShootingCodeGameCharacter::StaticClass, TEXT("AShootingCodeGameCharacter"), &Z_Registration_Info_UClass_AShootingCodeGameCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShootingCodeGameCharacter), 2434796988U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_2530636233(TEXT("/Script/ShootingCodeGame"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_1605735482(TEXT("/Script/ShootingCodeGame"),
 		Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

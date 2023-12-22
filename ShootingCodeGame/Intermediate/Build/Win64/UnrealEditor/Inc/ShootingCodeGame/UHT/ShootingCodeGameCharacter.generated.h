@@ -18,7 +18,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_22_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_22_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
-	virtual void ReReload_Implementation(); \
+	virtual void ResReload_Implementation(); \
 	virtual void ReqReload_Implementation(); \
 	virtual void ReShoot_Implementation(); \
 	virtual void ReqShoot_Implementation(); \
@@ -26,7 +26,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	virtual void ResPressF_Implementation(); \
 	virtual void ReqPressF_Implementation(); \
  \
-	DECLARE_FUNCTION(execReReload); \
+	DECLARE_FUNCTION(execResReload); \
 	DECLARE_FUNCTION(execReqReload); \
 	DECLARE_FUNCTION(execReShoot); \
 	DECLARE_FUNCTION(execReqShoot); \
@@ -43,7 +43,14 @@ private: \
 	friend struct Z_Construct_UClass_AShootingCodeGameCharacter_Statics; \
 public: \
 	DECLARE_CLASS(AShootingCodeGameCharacter, ACharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/ShootingCodeGame"), NO_API) \
-	DECLARE_SERIALIZER(AShootingCodeGameCharacter)
+	DECLARE_SERIALIZER(AShootingCodeGameCharacter) \
+	NO_API void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override; \
+	enum class ENetFields_Private : uint16 \
+	{ \
+		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
+		ControlRot=NETFIELD_REP_START, \
+		NETFIELD_REP_END=ControlRot	}; \
+	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
 #define FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_22_ENHANCED_CONSTRUCTORS \
