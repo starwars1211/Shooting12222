@@ -10,7 +10,13 @@
 				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/SX/HJ8UFBNPPTHTZWU8X3HHA5.uasset",
 				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/ShootingGame/GameMode/BP_ShootingCharacter.uasset",
 				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/ThirdPerson/Maps/ThirdPersonMap.umap",
-				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/Characters/Mannequins/Animations/ABP_Shooting.uasset"
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/Characters/Mannequins/Animations/ABP_Shooting.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/ShootingGame/Widjet/ShootingHudWidjet.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/ShootingGame/GameMode/BP_ShootingHud.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/ShootingGame/GameMode/BP_ShootingGameMode.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/ShootingGame/GameMode/BP_ShootingPlayerState.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/ShootingGame/BP_Weapon.uasset",
+				"C:/Users/PC/Documents/Unreal Projects/20231221/VR16/ShootingCodeGame/Content/Characters/Mannequins/Meshes/SK_Mannequin.uasset"
 			]
 		}
 	]

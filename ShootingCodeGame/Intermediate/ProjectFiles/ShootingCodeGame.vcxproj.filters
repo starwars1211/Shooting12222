@@ -51,6 +51,12 @@
     <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\MyBall.cpp">
       <Filter>Source\ShootingCodeGame\Private\Blueprints</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\Weapon.cpp">
+      <Filter>Source\ShootingCodeGame\Private\Blueprints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\WeaponInterface.cpp">
+      <Filter>Source\ShootingCodeGame\Private\Blueprints</Filter>
+    </ClCompile>
     <Filter Include="Source\ShootingCodeGame\Private\GameMode">
       <UniqueIdentifier>{F5D31DAA-5399-3779-BAF3-7DD454C9FBD7}</UniqueIdentifier>
     </Filter>
@@ -58,6 +64,12 @@
       <Filter>Source\ShootingCodeGame\Private\GameMode</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ShootingCodeGame\Private\GameMode\ShootingCodeGameMode.cpp">
+      <Filter>Source\ShootingCodeGame\Private\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ShootingCodeGame\Private\GameMode\ShootingHud.cpp">
+      <Filter>Source\ShootingCodeGame\Private\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ShootingCodeGame\Private\GameMode\ShootingPlayerState.cpp">
       <Filter>Source\ShootingCodeGame\Private\GameMode</Filter>
     </ClCompile>
     <Filter Include="Source\ShootingCodeGame\Public">
@@ -69,6 +81,12 @@
     <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\MyBall.h">
       <Filter>Source\ShootingCodeGame\Public\Blueprints</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\Weapon.h">
+      <Filter>Source\ShootingCodeGame\Public\Blueprints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\WeaponInterface.h">
+      <Filter>Source\ShootingCodeGame\Public\Blueprints</Filter>
+    </ClInclude>
     <Filter Include="Source\ShootingCodeGame\Public\GameMode">
       <UniqueIdentifier>{AAFABFA9-9103-34D0-93F5-7D62E0158595}</UniqueIdentifier>
     </Filter>
@@ -76,6 +94,12 @@
       <Filter>Source\ShootingCodeGame\Public\GameMode</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ShootingCodeGame\Public\GameMode\ShootingCodeGameMode.h">
+      <Filter>Source\ShootingCodeGame\Public\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ShootingCodeGame\Public\GameMode\ShootingHud.h">
+      <Filter>Source\ShootingCodeGame\Public\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ShootingCodeGame\Public\GameMode\ShootingPlayerState.h">
       <Filter>Source\ShootingCodeGame\Public\GameMode</Filter>
     </ClInclude>
   </ItemGroup>
