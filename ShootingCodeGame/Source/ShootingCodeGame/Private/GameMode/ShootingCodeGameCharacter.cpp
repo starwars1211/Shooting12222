@@ -12,7 +12,8 @@
 #include "InputActionValue.h"
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h" //DOREPLIFETIME 사용을 위해 추가
-#include "GameMode/ShootingPlayerstate.h"
+#include "GameMode/ShootingPlayerState.h"
+#include "Blueprints/Weapon.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -61,7 +62,8 @@ void AShootingCodeGameCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProp
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(AShootingCodeGameCharacter, ControlRot); // 변수들을 동기화 한다는 것 
+	DOREPLIFETIME(AShootingCodeGameCharacter, ControlRot);
+	DOREPLIFETIME(AShootingCodeGameCharacter, m_EquipWeapon);// 변수들을 동기화 한다는 것 
 	
 }
 
@@ -91,37 +93,60 @@ void AShootingCodeGameCharacter::Tick(float DeltaSeconds)
 	}
 }
 
-void AShootingCodeGameCharacter::ReqShoot_Implementation()
+float AShootingCodeGameCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ReqShoot"));
-	ReShoot();
-}
-
-void AShootingCodeGameCharacter::ReShoot_Implementation()
-{
-	PlayAnimMontage(ShootMontage);
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("ReShoot"));
-
-}
-
-
-void AShootingCodeGameCharacter::ReqPressF_Implementation() //블루프린트 때문에 붙여서 쓴다 C++에서 동작을 할 때에는  Implementation붙여서 쓴다
-{
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ReqPressF"));
-	ResPressF();
-}
-
-void AShootingCodeGameCharacter::ResPressF_Implementation()
-{
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ResPressF"));
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue,FString::Printf(TEXT(
+		"TakeDamage DamageAmount=%f EventInstingator=%s DamageCauser=%s"),
+		DamageAmount,
+		*EventInstigator->GetName(),
+		*DamageCauser->GetName()));
+	
 
 	AShootingPlayerState* ps = Cast<AShootingPlayerState>(GetPlayerState());
 	if (false == IsValid(ps))
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("Ps is not Valid"));
-		return;
+		return 0.0f;
 	}
-	ps->AddDamage(10.0f);
+	ps->AddDamage(DamageAmount);
+
+	return 0.0f;
+
+}
+
+void AShootingCodeGameCharacter::PressF(const FInputActionValue& Value)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("PressF"));
+	ReqPressF();
+}
+
+
+void AShootingCodeGameCharacter::ReqPressF_Implementation() //블루프린트 때문에 붙여서 쓴다 C++에서 동작을 할 때에는  Implementation붙여서 쓴다
+{
+	//서버기준 찾아줄거다
+
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ReqPressF"));
+	AActor* pNearestActor = FindNearestWeapon();
+
+	if (false == IsValid(pNearestActor))
+		return;
+	
+	pNearestActor->SetOwner(GetController());
+
+	ResPressF(pNearestActor);
+}
+
+void AShootingCodeGameCharacter::ResPressF_Implementation(AActor* PickUpActor)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ResPressF"));
+
+	m_EquipWeapon = PickUpActor;
+
+	IWeaponInterface* InterfaceObj = Cast<IWeaponInterface>(m_EquipWeapon);
+	if (nullptr == InterfaceObj)
+		return;
+
+	InterfaceObj->Execute_EventPickUp(m_EquipWeapon, this);
 }
 
 void AShootingCodeGameCharacter::ResPressFClient_Implementation()
@@ -147,8 +172,8 @@ void AShootingCodeGameCharacter::SetupPlayerInputComponent(UInputComponent* Play
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AShootingCodeGameCharacter::Look);
 
-		// Shoot
-		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Started, this, &AShootingCodeGameCharacter::Shoot);
+		// Trigger
+		EnhancedInputComponent->BindAction(TriggerAction, ETriggerEvent::Started, this, &AShootingCodeGameCharacter::Trigger);
 
 		// PressF
 		EnhancedInputComponent->BindAction(PressFAction, ETriggerEvent::Started, this, &AShootingCodeGameCharacter::PressF);
@@ -199,21 +224,39 @@ void AShootingCodeGameCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
-void AShootingCodeGameCharacter::Shoot(const FInputActionValue& Value)
+void AShootingCodeGameCharacter::Trigger(const FInputActionValue& Value)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("Shoot"));
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("Trigger"));
 	//PlayAnimMontage(ShootMontage);
-	ReqShoot();
+	ReqTrigger();
 }
 
-void AShootingCodeGameCharacter::PressF(const FInputActionValue& Value)
+void AShootingCodeGameCharacter::ReqTrigger_Implementation()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("PressF"));
-	ReqPressF();
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ReqTrigger"));
+	ResTrigger();
 }
+
+void AShootingCodeGameCharacter::ResTrigger_Implementation()
+{
+
+	IWeaponInterface* InterfaceObj = Cast<IWeaponInterface>(m_EquipWeapon);
+	if (nullptr == InterfaceObj)
+		return;
+	InterfaceObj->Execute_EventTrigger(m_EquipWeapon);
+
+
+	//PlayAnimMontage(ShootMontage);
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("ReTrigger"));
+
+}
+
+
 
 void AShootingCodeGameCharacter::Reload(const FInputActionValue& Value)
 {
+
+
 	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Reload"));
 	ReqReload();
 }
@@ -227,7 +270,66 @@ void AShootingCodeGameCharacter::ReqReload_Implementation()
 
 void AShootingCodeGameCharacter::ResReload_Implementation()
 {
-	PlayAnimMontage(ReloadMontage);
-	UGameplayStatics::SpawnSound2D(this,playSound);
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ResReload"));
+	IWeaponInterface* InterfaceObj = Cast<IWeaponInterface>(m_EquipWeapon);
+	if (nullptr == InterfaceObj)
+		return;
+
+	InterfaceObj->Execute_EventReload(m_EquipWeapon);
+
+	//PlayAnimMontage(ReloadMontage);
+	//UGameplayStatics::SpawnSound2D(this,playSound);
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("ResReload"));
+}
+
+void AShootingCodeGameCharacter::EquipTestWeapon(TSubclassOf<class AWeapon> WeaponClass)
+{
+	if (false == HasAuthority()) // 무조건 서버
+		return;
+
+	m_EquipWeapon = GetWorld()->SpawnActor<AWeapon>(WeaponClass, FVector(0, 0, 0), FRotator(0, 0, 0));// 서버에서 스폰이되면 클라이언트에서도 스폰이 된다(리플리케이트 되어있어서)
+
+	AWeapon* pWeapon = Cast<AWeapon>(m_EquipWeapon);
+	if (false == IsValid(pWeapon))
+		return;
+
+	pWeapon->m_pOwnChar = this;
+
+	TestWeaponSetOwner();
+
+	m_EquipWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("weapon"));
+
+}
+
+void AShootingCodeGameCharacter::TestWeaponSetOwner()
+{
+	if(IsValid(GetController()))
+	{ 
+		m_EquipWeapon->SetOwner(GetController());
+		return;
+	}
+
+	FTimerManager& tm = GetWorld()->GetTimerManager();
+	tm.SetTimer(th_BindSetOwner, this, &AShootingCodeGameCharacter::TestWeaponSetOwner, 0.1f, false);
+
+}
+
+AActor* AShootingCodeGameCharacter::FindNearestWeapon()
+{
+	TArray<AActor*> actors;
+	GetCapsuleComponent()->GetOverlappingActors(actors, AWeapon::StaticClass());
+
+	double nearestDist = 9999999.0f;
+	AActor* pNearestActor = nullptr;
+	for (AActor* pTarget : actors)
+	{
+
+		double dist = FVector::Distance(GetActorLocation(), pTarget->GetActorLocation());
+		if (dist >= nearestDist)
+			continue;
+
+		nearestDist = dist;
+		pNearestActor = pTarget;
+
+	}
+	return pNearestActor;
 }

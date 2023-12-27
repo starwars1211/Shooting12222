@@ -48,6 +48,12 @@
     <Filter Include="Source\ShootingCodeGame\Private\Blueprints">
       <UniqueIdentifier>{CA705118-9D80-3872-862F-96115E0F60CA}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\ActorSpawner.cpp">
+      <Filter>Source\ShootingCodeGame\Private\Blueprints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\AnimNotify_Shoot.cpp">
+      <Filter>Source\ShootingCodeGame\Private\Blueprints</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\MyBall.cpp">
       <Filter>Source\ShootingCodeGame\Private\Blueprints</Filter>
     </ClCompile>
@@ -78,6 +84,12 @@
     <Filter Include="Source\ShootingCodeGame\Public\Blueprints">
       <UniqueIdentifier>{89D1244B-D00F-3F0C-BECE-35079FF71380}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\ActorSpawner.h">
+      <Filter>Source\ShootingCodeGame\Public\Blueprints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\AnimNotify_Shoot.h">
+      <Filter>Source\ShootingCodeGame\Public\Blueprints</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\MyBall.h">
       <Filter>Source\ShootingCodeGame\Public\Blueprints</Filter>
     </ClInclude>

@@ -35,6 +35,8 @@
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\ShootingCodeGameEditor\Development\Engine\SharedPCH.Engine.Cpp20.h.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ActorSpawner.gen.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\AnimNotify_Shoot.gen.cpp.obj"
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\MyBall.gen.cpp.obj"
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGame.init.gen.cpp.obj"
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGameCharacter.gen.cpp.obj"
@@ -46,6 +48,8 @@
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGame.cpp.obj"
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\MyBall.cpp.obj"
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGameMode.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ActorSpawner.cpp.obj"
+"C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\AnimNotify_Shoot.cpp.obj"
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\Weapon.cpp.obj"
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\WeaponInterface.cpp.obj"
 "C:\Users\PC\Documents\Unreal Projects\20231221\VR16\ShootingCodeGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\ShootingCodeGame\ShootingCodeGameCharacter.cpp.obj"

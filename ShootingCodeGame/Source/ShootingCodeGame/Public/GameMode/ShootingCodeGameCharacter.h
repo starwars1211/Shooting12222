@@ -45,9 +45,9 @@ class AShootingCodeGameCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
-	/** Shoot Input Action */
+	/** Trigger Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* ShootAction;
+	UInputAction* TriggerAction;
 
 	/** PressF Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -70,7 +70,7 @@ protected:
 	void Look(const FInputActionValue& Value);
 			
 	/** Called for Shoot input */
-	void Shoot(const FInputActionValue& Value);
+	void Trigger(const FInputActionValue& Value);
 
 	/** Called for PressF input */
 	void PressF(const FInputActionValue& Value);
@@ -88,6 +88,8 @@ protected:
 
 	virtual void Tick(float DeltaSeconds) override;
 
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
@@ -100,20 +102,18 @@ public:
 	void ReqPressF();//Custom event
 
 	UFUNCTION(NetMulticast, Reliable) //Mulicast
-	void ResPressF();
+	void ResPressF(AActor* PickUpActor);
 
 	UFUNCTION(Client, Reliable) //Client only
 	void ResPressFClient();
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) 
-	UAnimMontage* ShootMontage;
-
+	
 	UFUNCTION(Server, Reliable) // Server only
-		void ReqShoot();//Custom event
+		void ReqTrigger();//Custom event
 
 	UFUNCTION(NetMulticast, Reliable) //Mulicast
-		void ReShoot();
+		void ResTrigger();
 
 	UFUNCTION(Server, Reliable) // Server only
 		void ReqReload();//Custom event
@@ -121,16 +121,26 @@ public:
 	UFUNCTION(NetMulticast, Reliable) //Mulicast
 		void ResReload();
 
+
 public:
+	UFUNCTION(BlueprintCallable)
+	void EquipTestWeapon(TSubclassOf<class AWeapon> WeaponClass);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UAnimMontage* ReloadMontage;
+	UFUNCTION()
+	void TestWeaponSetOwner();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USoundBase* playSound;
+	AActor* FindNearestWeapon();
+
+
+public:
 
 	UPROPERTY(Replicated, BlueprintReadWrite)
 	FRotator ControlRot;
+
+	UPROPERTY(Replicated, BlueprintReadWrite)
+	AActor* m_EquipWeapon;
+
+	FTimerHandle th_BindSetOwner;
 
 };
 

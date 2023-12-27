@@ -9,6 +9,8 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class AWeapon;
 #ifdef SHOOTINGCODEGAME_ShootingCodeGameCharacter_generated_h
 #error "ShootingCodeGameCharacter.generated.h already included, missing '#pragma once' in ShootingCodeGameCharacter.h"
 #endif
@@ -20,16 +22,18 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual void ResReload_Implementation(); \
 	virtual void ReqReload_Implementation(); \
-	virtual void ReShoot_Implementation(); \
-	virtual void ReqShoot_Implementation(); \
+	virtual void ResTrigger_Implementation(); \
+	virtual void ReqTrigger_Implementation(); \
 	virtual void ResPressFClient_Implementation(); \
-	virtual void ResPressF_Implementation(); \
+	virtual void ResPressF_Implementation(AActor* PickUpActor); \
 	virtual void ReqPressF_Implementation(); \
  \
+	DECLARE_FUNCTION(execTestWeaponSetOwner); \
+	DECLARE_FUNCTION(execEquipTestWeapon); \
 	DECLARE_FUNCTION(execResReload); \
 	DECLARE_FUNCTION(execReqReload); \
-	DECLARE_FUNCTION(execReShoot); \
-	DECLARE_FUNCTION(execReqShoot); \
+	DECLARE_FUNCTION(execResTrigger); \
+	DECLARE_FUNCTION(execReqTrigger); \
 	DECLARE_FUNCTION(execResPressFClient); \
 	DECLARE_FUNCTION(execResPressF); \
 	DECLARE_FUNCTION(execReqPressF);
@@ -49,7 +53,8 @@ public: \
 	{ \
 		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
 		ControlRot=NETFIELD_REP_START, \
-		NETFIELD_REP_END=ControlRot	}; \
+		m_EquipWeapon, \
+		NETFIELD_REP_END=m_EquipWeapon	}; \
 	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 

@@ -79,7 +79,11 @@
             "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\source\\shootingcodegame\\public\\gamemode\\shootingplayerstate.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\playerstate.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\playerstate.generated.h",
-            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\shootingplayerstate.generated.h"
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\shootingplayerstate.generated.h",
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\source\\shootingcodegame\\public\\blueprints\\weapon.h",
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\source\\shootingcodegame\\public\\blueprints\\weaponinterface.h",
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\weaponinterface.generated.h",
+            "c:\\users\\pc\\documents\\unreal projects\\20231221\\vr16\\shootingcodegame\\intermediate\\build\\win64\\unrealeditor\\inc\\shootingcodegame\\uht\\weapon.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

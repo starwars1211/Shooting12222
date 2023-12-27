@@ -9,18 +9,34 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 // Cross Module References
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
-	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
-	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
 	SHOOTINGCODEGAME_API UClass* Z_Construct_UClass_AShootingCodeGameCharacter();
 	SHOOTINGCODEGAME_API UClass* Z_Construct_UClass_AShootingCodeGameCharacter_NoRegister();
+	SHOOTINGCODEGAME_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_ShootingCodeGame();
 // End Cross Module References
+	DEFINE_FUNCTION(AShootingCodeGameCharacter::execTestWeaponSetOwner)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->TestWeaponSetOwner();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AShootingCodeGameCharacter::execEquipTestWeapon)
+	{
+		P_GET_OBJECT(UClass,Z_Param_WeaponClass);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->EquipTestWeapon(Z_Param_WeaponClass);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AShootingCodeGameCharacter::execResReload)
 	{
 		P_FINISH;
@@ -35,18 +51,18 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		P_THIS->ReqReload_Implementation();
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(AShootingCodeGameCharacter::execReShoot)
+	DEFINE_FUNCTION(AShootingCodeGameCharacter::execResTrigger)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->ReShoot_Implementation();
+		P_THIS->ResTrigger_Implementation();
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(AShootingCodeGameCharacter::execReqShoot)
+	DEFINE_FUNCTION(AShootingCodeGameCharacter::execReqTrigger)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->ReqShoot_Implementation();
+		P_THIS->ReqTrigger_Implementation();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AShootingCodeGameCharacter::execResPressFClient)
@@ -58,9 +74,10 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	}
 	DEFINE_FUNCTION(AShootingCodeGameCharacter::execResPressF)
 	{
+		P_GET_OBJECT(AActor,Z_Param_PickUpActor);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->ResPressF_Implementation();
+		P_THIS->ResPressF_Implementation(Z_Param_PickUpActor);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AShootingCodeGameCharacter::execReqPressF)
@@ -70,6 +87,10 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		P_THIS->ReqPressF_Implementation();
 		P_NATIVE_END;
 	}
+	struct ShootingCodeGameCharacter_eventResPressF_Parms
+	{
+		AActor* PickUpActor;
+	};
 	static FName NAME_AShootingCodeGameCharacter_ReqPressF = FName(TEXT("ReqPressF"));
 	void AShootingCodeGameCharacter::ReqPressF()
 	{
@@ -80,20 +101,17 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	{
 		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ReqReload),NULL);
 	}
-	static FName NAME_AShootingCodeGameCharacter_ReqShoot = FName(TEXT("ReqShoot"));
-	void AShootingCodeGameCharacter::ReqShoot()
+	static FName NAME_AShootingCodeGameCharacter_ReqTrigger = FName(TEXT("ReqTrigger"));
+	void AShootingCodeGameCharacter::ReqTrigger()
 	{
-		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ReqShoot),NULL);
-	}
-	static FName NAME_AShootingCodeGameCharacter_ReShoot = FName(TEXT("ReShoot"));
-	void AShootingCodeGameCharacter::ReShoot()
-	{
-		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ReShoot),NULL);
+		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ReqTrigger),NULL);
 	}
 	static FName NAME_AShootingCodeGameCharacter_ResPressF = FName(TEXT("ResPressF"));
-	void AShootingCodeGameCharacter::ResPressF()
+	void AShootingCodeGameCharacter::ResPressF(AActor* PickUpActor)
 	{
-		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ResPressF),NULL);
+		ShootingCodeGameCharacter_eventResPressF_Parms Parms;
+		Parms.PickUpActor=PickUpActor;
+		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ResPressF),&Parms);
 	}
 	static FName NAME_AShootingCodeGameCharacter_ResPressFClient = FName(TEXT("ResPressFClient"));
 	void AShootingCodeGameCharacter::ResPressFClient()
@@ -105,19 +123,60 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	{
 		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ResReload),NULL);
 	}
+	static FName NAME_AShootingCodeGameCharacter_ResTrigger = FName(TEXT("ResTrigger"));
+	void AShootingCodeGameCharacter::ResTrigger()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_AShootingCodeGameCharacter_ResTrigger),NULL);
+	}
 	void AShootingCodeGameCharacter::StaticRegisterNativesAShootingCodeGameCharacter()
 	{
 		UClass* Class = AShootingCodeGameCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "EquipTestWeapon", &AShootingCodeGameCharacter::execEquipTestWeapon },
 			{ "ReqPressF", &AShootingCodeGameCharacter::execReqPressF },
 			{ "ReqReload", &AShootingCodeGameCharacter::execReqReload },
-			{ "ReqShoot", &AShootingCodeGameCharacter::execReqShoot },
-			{ "ReShoot", &AShootingCodeGameCharacter::execReShoot },
+			{ "ReqTrigger", &AShootingCodeGameCharacter::execReqTrigger },
 			{ "ResPressF", &AShootingCodeGameCharacter::execResPressF },
 			{ "ResPressFClient", &AShootingCodeGameCharacter::execResPressFClient },
 			{ "ResReload", &AShootingCodeGameCharacter::execResReload },
+			{ "ResTrigger", &AShootingCodeGameCharacter::execResTrigger },
+			{ "TestWeaponSetOwner", &AShootingCodeGameCharacter::execTestWeaponSetOwner },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics
+	{
+		struct ShootingCodeGameCharacter_eventEquipTestWeapon_Parms
+		{
+			TSubclassOf<AWeapon>  WeaponClass;
+		};
+		static const UECodeGen_Private::FClassPropertyParams NewProp_WeaponClass;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::NewProp_WeaponClass = { "WeaponClass", nullptr, (EPropertyFlags)0x0014000000000080, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShootingCodeGameCharacter_eventEquipTestWeapon_Parms, WeaponClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AWeapon_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::NewProp_WeaponClass,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "EquipTestWeapon", nullptr, nullptr, Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::PropPointers), sizeof(Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::ShootingCodeGameCharacter_eventEquipTestWeapon_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::ShootingCodeGameCharacter_eventEquipTestWeapon_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ReqPressF_Statics
 	{
@@ -175,7 +234,7 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot_Statics
+	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ReqTrigger_Statics
 	{
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
@@ -183,7 +242,7 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot_Statics::Function_MetaDataParams[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_ReqTrigger_Statics::Function_MetaDataParams[] = {
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "// Server only\n" },
 #endif
@@ -193,50 +252,28 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 #endif
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "ReqShoot", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot_Statics::Function_MetaDataParams) };
-	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot()
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_ReqTrigger_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "ReqTrigger", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ReqTrigger_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_ReqTrigger_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_ReqTrigger()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot_Statics::Function_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//Custom event\n//Mulicast\n" },
-#endif
-		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Custom event\nMulicast" },
-#endif
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "ReShoot", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00024CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot_Statics::Function_MetaDataParams) };
-	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShootingCodeGameCharacter_ReqTrigger_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics
 	{
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_PickUpActor;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::NewProp_PickUpActor = { "PickUpActor", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ShootingCodeGameCharacter_eventResPressF_Parms, PickUpActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::NewProp_PickUpActor,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::Function_MetaDataParams[] = {
@@ -249,7 +286,9 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 #endif
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "ResPressF", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00024CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::Function_MetaDataParams) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "ResPressF", nullptr, nullptr, Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::PropPointers), sizeof(ShootingCodeGameCharacter_eventResPressF_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00024CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF_Statics::PropPointers) < 2048);
+	static_assert(sizeof(ShootingCodeGameCharacter_eventResPressF_Parms) < MAX_uint16);
 	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -315,6 +354,56 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AShootingCodeGameCharacter_ResTrigger_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_ResTrigger_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Custom event\n//Mulicast\n" },
+#endif
+		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Custom event\nMulicast" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_ResTrigger_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "ResTrigger", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00024CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_ResTrigger_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_ResTrigger_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_ResTrigger()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShootingCodeGameCharacter_ResTrigger_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AShootingCodeGameCharacter_TestWeaponSetOwner_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AShootingCodeGameCharacter_TestWeaponSetOwner_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShootingCodeGameCharacter_TestWeaponSetOwner_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShootingCodeGameCharacter, nullptr, "TestWeaponSetOwner", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShootingCodeGameCharacter_TestWeaponSetOwner_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShootingCodeGameCharacter_TestWeaponSetOwner_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AShootingCodeGameCharacter_TestWeaponSetOwner()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShootingCodeGameCharacter_TestWeaponSetOwner_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(AShootingCodeGameCharacter);
 	UClass* Z_Construct_UClass_AShootingCodeGameCharacter_NoRegister()
 	{
@@ -352,9 +441,9 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_LookAction;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_ShootAction_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TriggerAction_MetaData[];
 #endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_ShootAction;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_TriggerAction;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_PressFAction_MetaData[];
 #endif
@@ -364,21 +453,13 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReloadAction;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_ShootMontage_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_ShootMontage;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_ReloadMontage_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReloadMontage;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_playSound_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_playSound;
-#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ControlRot_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_ControlRot;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_m_EquipWeapon_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_m_EquipWeapon;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -389,13 +470,15 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_AShootingCodeGameCharacter_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_EquipTestWeapon, "EquipTestWeapon" }, // 1169612566
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReqPressF, "ReqPressF" }, // 555041949
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReqReload, "ReqReload" }, // 1007805956
-		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReqShoot, "ReqShoot" }, // 2888907508
-		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReShoot, "ReShoot" }, // 2310996531
-		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF, "ResPressF" }, // 232045857
+		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ReqTrigger, "ReqTrigger" }, // 1904212926
+		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressF, "ResPressF" }, // 484308026
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ResPressFClient, "ResPressFClient" }, // 1587250022
 		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ResReload, "ResReload" }, // 1840526961
+		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_ResTrigger, "ResTrigger" }, // 288553325
+		{ &Z_Construct_UFunction_AShootingCodeGameCharacter_TestWeaponSetOwner, "TestWeaponSetOwner" }, // 925078729
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
@@ -492,19 +575,19 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_LookAction = { "LookAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, LookAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_LookAction_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_LookAction_MetaData) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootAction_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_TriggerAction_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Input" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Shoot Input Action */" },
+		{ "Comment", "/** Trigger Input Action */" },
 #endif
 		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Shoot Input Action" },
+		{ "ToolTip", "Trigger Input Action" },
 #endif
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootAction = { "ShootAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, ShootAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootAction_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootAction_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_TriggerAction = { "TriggerAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, TriggerAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_TriggerAction_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_TriggerAction_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_PressFAction_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -534,33 +617,19 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadAction = { "ReloadAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, ReloadAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadAction_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadAction_MetaData) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootMontage_MetaData[] = {
-		{ "Category", "ShootingCodeGameCharacter" },
-		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootMontage = { "ShootMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, ShootMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootMontage_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootMontage_MetaData) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadMontage_MetaData[] = {
-		{ "Category", "ShootingCodeGameCharacter" },
-		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadMontage = { "ReloadMontage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, ReloadMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadMontage_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadMontage_MetaData) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound_MetaData[] = {
-		{ "Category", "ShootingCodeGameCharacter" },
-		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound = { "playSound", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, playSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound_MetaData) };
-#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot_MetaData[] = {
 		{ "Category", "ShootingCodeGameCharacter" },
 		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot = { "ControlRot", nullptr, (EPropertyFlags)0x0010000000000024, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, ControlRot), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_m_EquipWeapon_MetaData[] = {
+		{ "Category", "ShootingCodeGameCharacter" },
+		{ "ModuleRelativePath", "Public/GameMode/ShootingCodeGameCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_m_EquipWeapon = { "m_EquipWeapon", nullptr, (EPropertyFlags)0x0010000000000024, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShootingCodeGameCharacter, m_EquipWeapon), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_m_EquipWeapon_MetaData), Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_m_EquipWeapon_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShootingCodeGameCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_CameraBoom,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_FollowCamera,
@@ -568,13 +637,11 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_JumpAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_MoveAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_LookAction,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootAction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_TriggerAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_PressFAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadAction,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ShootMontage,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ReloadMontage,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_playSound,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_ControlRot,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShootingCodeGameCharacter_Statics::NewProp_m_EquipWeapon,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AShootingCodeGameCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AShootingCodeGameCharacter>::IsAbstract,
@@ -611,9 +678,11 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 	void AShootingCodeGameCharacter::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
 		static const FName Name_ControlRot(TEXT("ControlRot"));
+		static const FName Name_m_EquipWeapon(TEXT("m_EquipWeapon"));
 
 		const bool bIsValid = true
-			&& Name_ControlRot == ClassReps[(int32)ENetFields_Private::ControlRot].Property->GetFName();
+			&& Name_ControlRot == ClassReps[(int32)ENetFields_Private::ControlRot].Property->GetFName()
+			&& Name_m_EquipWeapon == ClassReps[(int32)ENetFields_Private::m_EquipWeapon].Property->GetFName();
 
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in AShootingCodeGameCharacter"));
 	}
@@ -624,9 +693,9 @@ void EmptyLinkFunctionForGeneratedCodeShootingCodeGameCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AShootingCodeGameCharacter, AShootingCodeGameCharacter::StaticClass, TEXT("AShootingCodeGameCharacter"), &Z_Registration_Info_UClass_AShootingCodeGameCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShootingCodeGameCharacter), 2434796988U) },
+		{ Z_Construct_UClass_AShootingCodeGameCharacter, AShootingCodeGameCharacter::StaticClass, TEXT("AShootingCodeGameCharacter"), &Z_Registration_Info_UClass_AShootingCodeGameCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShootingCodeGameCharacter), 2263996252U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_1605735482(TEXT("/Script/ShootingCodeGame"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_1028775025(TEXT("/Script/ShootingCodeGame"),
 		Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_PC_Documents_Unreal_Projects_20231221_VR16_ShootingCodeGame_Source_ShootingCodeGame_Public_GameMode_ShootingCodeGameCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

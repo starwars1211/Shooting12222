@@ -122,6 +122,16 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\ShootingCodeGame\ShootingCodeGame.h"/>
+    <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\ActorSpawner.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\AnimNotify_Shoot.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ShootingCodeGame\Private\Blueprints\MyBall.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -157,6 +167,8 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\ActorSpawner.h"/>
+    <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\AnimNotify_Shoot.h"/>
     <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\MyBall.h"/>
     <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\Weapon.h"/>
     <ClInclude Include="..\..\Source\ShootingCodeGame\Public\Blueprints\WeaponInterface.h"/>
